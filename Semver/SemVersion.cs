@@ -382,7 +382,11 @@ namespace Semver
             if (ReferenceEquals(this, obj))
                 return true;
 
-            var other = (SemVersion)obj;
+            var other = obj as SemVersion;
+            if (other == null)
+            {
+                return false;
+            }
 
             // do string comparison by reference (possible because strings are interned in ctor)
             return this.Major == other.Major &&
